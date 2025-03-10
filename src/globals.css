@@ -9,7 +9,6 @@
 }
 
 @theme {
-
   --color-white: #eee;
   --color-gray-100: #c8ccd2;
   --color-gray-200: #314762;
@@ -121,5 +120,37 @@
   50% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+/* Responsividade para telas menores que 768px (tablets e celulares) */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .weather-container {
+    padding: 15px;
+  }
+
+  .weather-info {
+    font-size: 16px;
+  }
+}
+
+/* Responsividade para telas menores que 480px (celulares pequenos) */
+@media (max-width: 480px) {
+  .weather-container {
+    padding: 10px;
+  }
+
+  .weather-info {
+    font-size: 14px;
+  }
+
+  .search-bar input {
+    font-size: 14px;
+    padding: 8px;
   }
 }

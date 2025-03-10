@@ -8,8 +8,8 @@ export default function WeatherImage({ weatherData }) {
   const IconSrc = weatherIcons[condition] || "/icons/default.png";
 
   return (
-    <div className="flex flex-col items-start pr-8">
-      {IconSrc && <IconSrc className="size-35" />}
+    <div className="flex flex-col items-start md:pr-8">
+      {IconSrc && <IconSrc className="size-70 md:size-35" />}
       {/* <img src={iconSrc} alt={condition} className="w-16 h-16" /> */}
       {/* <p className="w-16 h-16">{iconSrc}</p> */}
       {/* <img src={iconSrc} className="size-35" /> */}

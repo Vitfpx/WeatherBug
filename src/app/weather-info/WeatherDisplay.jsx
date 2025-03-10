@@ -10,11 +10,11 @@ export default function WeatherDisplay({ weather }) {
     );
 
   return (
-    <article className="flex justify-between text-white p-2 -mt-2 rounded-lg text-center">
-      <div className="flex flex-col items-start justify-between pl-4">
+    <article className="flex flex-col-reverse items-center justify-between text-white p-2 md:p-8 lg:p-0.5 -mt-2 rounded-lg text-center md:flex-row md:text-left">
+      <div className="flex flex-row w-full justify-between lg:p-2 space-y-6 md:flex-col md:items-start lg:pl-4">
         <div className="text-left">
-          <h1 className="text-[28px] font-bold mb-1">{weather.name}</h1>
-          <p className="text-sm text-gray-100/80">
+          <h1 className="text-4xl md:text-[28px] font-bold">{weather.name}</h1>
+          <p className="text-sm md:text-lg lg:text-sm text-gray-100/80">
             Humidity: {weather.main.humidity}%
           </p>
         </div>
@@ -24,7 +24,7 @@ export default function WeatherDisplay({ weather }) {
           </span>
         </div>
       </div>
-      <div>
+      <div className="mt-4 md:mt-0">
         <WeatherImage weatherData={weather} />
       </div>
     </article>

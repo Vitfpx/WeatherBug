@@ -35,11 +35,16 @@ export default function App() {
         setIsLoading(false);
         return;
       }
-
       setWeather(weatherData);
 
       const forecastData = await getTodaysForecast(city);
-      setForecast(forecastData?.list.slice(0, 7) || []);
+
+      if (forecastData) {
+        const numberOfForecasts =
+          window.innerWidth <= 768 ? 3 : window.innerWidth <= 1024 ? 5 : 7;
+        setForecast(forecastData?.list.slice(0, numberOfForecasts) || []);
+      }
+      console.log(forecast);
 
       const details = await getWeatherDetails(city);
       setWeatherdDetails(details);
@@ -49,10 +54,9 @@ export default function App() {
 
       const weekForecastData = await getWeatherFromWeatherAPI(city);
       setWeekForecast(weekForecastData?.forecast?.forecastday || []);
-
-      setIsLoading(false);
     } catch {
       setError("Error when searching for climate data.");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -63,9 +67,9 @@ export default function App() {
   });
 
   return (
-    <main className="font-sf-pro flex p-4 gap-4 flex-row bg-gray-400 w-screen h-screen">
-      <NavSideBar />
-      <div className="flex flex-col justify-between flex-1">
+    <main className="font-sf-pro flex flex-col md:flex-row p-4 gap-4 bg-gray-400 w-full min-h-screen overflow-auto">
+      <NavSideBar className="w-full md:w-1/4 lg:w-1/5" />
+      <div className="flex gap-2 flex-col w-full justify-start md:gap-4 md:w-3/4 lg:w-2/3">
         <SearchBar onSearch={handleSearch} />
         {error && <p className="text-red-500">{error}</p>}
         {isLoading ? (
@@ -86,7 +90,12 @@ export default function App() {
           )
         )}
       </div>
-      {weather && !isLoading && <WeeksForecast forecast={weekForecast} />}
+      {weather && !isLoading && (
+        <div className="w-full md:w-full lg:w-3/4">
+          <WeeksForecast forecast={weekForecast} />
+        </div>
+      )}
     </main>
   );
+  
 }

@@ -12,9 +12,11 @@ const getDayName = (index) => {
 
 export default function WeeksForecast({ forecast }) {
   return (
-    <aside className="h-full flex flex-col rounded-2xl bg-gray-300 p-7 space-y-4 text-gray-100/80">
+    <aside className="h-full flex flex-col rounded-2xl bg-gray-300 not-md:px-0 p-7 space-y-4 text-gray-100/80">
       <div className="text-sm">
-        <h2>7-DAY FORECAST</h2>
+        <h2 className="not-md:text-lg not-md:text-center text-gray-100">
+          7-DAY FORECAST
+        </h2>
       </div>
       <div className="flex flex-col flex-1 px-3 h-auto justify-between space-y-2">
         {forecast.map((day, index) => (
@@ -34,20 +36,19 @@ export default function WeeksForecast({ forecast }) {
 
 function DayForecast({ day, icon, weather, initialDegrees, finalDegrees }) {
   return (
-
-    <div className="flex items-center justify-between w-full bg-gray-400/20 p-3 px-4 text-gray-100 rounded-lg gap-12">
-      <span className="text-gray-100/65 w-auto text-center">{day}</span>
-      {/* w-16 text-center gap-4 */}
-      <div className="flex items-center gap-2 min-w-[120px] max-w-[180px]"> 
+    <div className="flex items-center justify-between w-full bg-gray-400/20 p-3 px-4 text-gray-100 rounded-lg md:gap-12">
+      <span className="not-lg:text-lg text-gray-100/65 w-auto text-center">
+        {day}
+      </span>
+      <div className="flex items-center gap-2 min-w-[120px] max-w-[180px]md:max-w-[250px] lg:max-w-[180px]">
         <img src={icon} alt={weather} className="size-10" />
-        <p className="text-sm w-full">{weather}</p>
+        <p className="text-[14px] md:text-xl lg:text-sm w-full">{weather}</p>
       </div>
 
-      <div className="flex items-center gap-1 text-lg font-medium">
+      <div className="flex items-center gap-1 text-lg md:text-xl lg:text-lg font-medium">
         <p>{initialDegrees}</p>
         <span className="text-gray-100/65">/{finalDegrees}</span>
       </div>
-
     </div>
   );
 }
